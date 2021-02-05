@@ -1,0 +1,13 @@
+clouds:
+  default:
+    auth:
+      auth_url: https://identity.jp-east-3.cloud.global.fujitsu.com/v3/
+      username: USERNAME
+      password: PASSWORD
+      project_domain_name: DOMAIN_NAME
+      user_domain_name: DOMAINE_NAME
+      project_name: PROJECT_NAME
+      project_id: PROJECT_ID
+    identity_api_version: 3
+    region_name: REGION
+    

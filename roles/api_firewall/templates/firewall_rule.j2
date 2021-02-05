@@ -1,0 +1,9 @@
+{
+  "firewall_rule": {
+      "action": "{{ item.fw_action }}",
+      "destination_port": "{{ item.fw_port }}",
+      "enabled": true,
+      "name": "{{ item.fw_rule_name}}",
+      "protocol": "{{ item.fw_protocol }}"
+  }
+}

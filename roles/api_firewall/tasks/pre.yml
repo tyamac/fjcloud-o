@@ -1,0 +1,35 @@
+---
+- name: router_id variable check
+  fail:
+    msg: router_id variable is undefined.
+  when: router_id is not defined
+
+- name: x_auth_token variable check
+  fail:
+    msg: x_auth_token variable is undefined.
+  when: x_auth_token is not defined
+
+
+# 指定のルーターにfirewallがアタッチされていないか確認する
+- name: get firewall list
+  uri: 
+    url: https://networking.jp-east-3.cloud.global.fujitsu.com/v2.0/fw/firewalls
+    method: GET
+    headers:
+      Content-Type: "application/json"
+      Accept: "application/json"
+      X-Auth-Token: "{{ x_auth_token }}"
+    status_code: 200
+  register: response
+
+- set_fact:
+    firewall_list: "{{ response | json_query('json.firewalls[*].router_ids') }}"
+# - debug:
+#     var: firewall_list
+
+
+# 指定のルーターに既にFirewallが関連付けられていたらエラーにする。
+- name: router firewall conflict
+  fail:
+    msg: This router is already associated with another firewall.
+  when: router_id|e in firewall_list|e

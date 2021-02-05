@@ -1,0 +1,16 @@
+---
+- name: create new instance
+  openstack.cloud.server:
+    state: present
+    cloud: "{{ target_cloud | default(omit) }}"
+    name: "{{ server_name }}"
+    flavor: "{{ server_flaver }}"
+#    key_name: "{{ key_pair }}"
+    image: "{{ volume_image }}"
+    volume_size: "{{ volume_size }}"
+    boot_from_volume: yes
+    terminate_volume: yes
+    network: "{{ network_name }}"
+    auto_ip: yes
+    
+

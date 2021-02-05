@@ -1,0 +1,7 @@
+---
+- name: create security groups
+  openstack.cloud.security_group:
+    cloud: "{{ target_cloud | default(omit) }}"
+    state: present
+    name: "{{ item.name }}"
+  with_items: "{{ security_groups }}"

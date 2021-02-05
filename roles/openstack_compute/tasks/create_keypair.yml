@@ -1,0 +1,31 @@
+---
+- name: create keypair
+  openstack.cloud.keypair:
+    cloud: "{{ target_cloud | default(omit) }}"
+    state: present
+    name: "{{ public_key_name }}"
+  register: result
+  notify:
+  # 鍵が作成されたら鍵をダウンロードする
+    - download private key
+    - download public key
+  when: import_key == "no"
+# - debug:
+#     var: result
+
+- name: import keypair
+  openstack.cloud.keypair:
+    cloud: "{{ tareget_cloud | default(omit) }}"
+    state: present
+    name: "{{ public_key_name }}"
+    public_key_file: "{{ users_public_key }}"
+  when: import_key == "yes"
+
+
+# [debug]作成したkeypairを削除する
+# - name: delete keypair
+#   openstack.cloud.keypair:
+#     cloud: "{{ target_cloud | default(omit) }}"
+#     state: absent
+#     name: "{{ public_key_name }}"
+

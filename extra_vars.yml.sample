@@ -1,0 +1,61 @@
+---
+#----------------------
+# Openstack Networking
+#----------------------
+# Network
+# network_name: os_default_network
+#
+# Subnet
+# subnet_name: os_default_subnet
+# cidr: 192.168.31.0/24
+# dns:
+#   - 8.8.8.8
+#   - 8.8.4.4
+# gateway_ip: 192.168.31.254
+# dhcp_pool_start: 192.168.31.1
+# dhcp_pool_end: 192.168.31.253
+#
+# Router
+# router_name: os_default_router
+# external_network: fip-net
+#
+# Security Groups
+# security_groups:
+#   - name: os_default_sg1
+
+
+#----------------------
+# Openstack Compute
+#----------------------
+# Keypair
+# import_key: "yes"|"no"
+# import_key: "no"
+# public_key_name: os_ansible_key
+# public_key_file: os_ansible_key.pub
+# private_key_file: os_ansible_key.pem
+# output_dir: files
+# ↓パブリックキーをインポートする時に指定する↓
+# users_public_key: /home/user/.ssh/id_rsa.pub
+
+
+#----------------------
+# API Common
+#----------------------
+# Include clouds.yml
+# os_cloud: default
+
+
+#----------------------
+# API Firewall
+#----------------------
+# Firewall Rules
+# firewall_rules:
+#   - {"fw_action": "allow", "fw_protocol": "tcp", "fw_port": "80", "fw_rule_name": "allow_http"} 
+#   - {"fw_action": "allow", "fw_protocol": "tcp", "fw_port": "443", "fw_rule_name": "allow_https"} 
+# 
+# # API Firewall Policy
+# firewall_policy_name: os_ansible_policy
+# 
+# # API Firewall
+# firewall_name: os_ansible_firewall
+

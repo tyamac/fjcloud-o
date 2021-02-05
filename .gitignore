@@ -1,0 +1,7 @@
+clouds.yml
+*_vars.yml
+inventory.ini
+collections/*
+*.swp
+files/*
+logs/*
