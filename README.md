@@ -25,11 +25,11 @@ ansible-galaxy collection install -r requirements.yml -p collections/
 > こちらを参考にしてください
 > [openstack | Configuration](https://docs.openstack.org/python-openstackclient/pike/configuration/index.html)
 
-なお、sampleでクラウドを指定する `default` は変更できますが、次のような名前はそのまま使用できません。ダブルクォーテーションで囲む必要があります。
+なお、`clouds.yml.sample`のようにクラウドを指定する `default:` は変更できますが、次のような名前はそのまま使用できないのでダブルクォーテーションで囲む必要があります。
 - 数字から始まる(例: 3hands) => `"\"3hands\""`
 - 記号が含まれる(例: jp-east-3) => `"\"jp-east-3\""`
 
-また、clouds.ymlに複数のクラウドの認証情報を登録している場合や、`default`以外の名前を指定した場合は、extra_varsで`os_cloud:`パラメータを使ってクラウド名を指定してください。
+また、playbookを実行する環境のclouds.ymlに複数のクラウドの認証情報を登録している場合や、`default:`以外の名前を指定した場合は、extra_varsで`os_cloud:`パラメータでクラウド名を指定してください。
   ```
   os_cloud: hogehoge
   ```
