@@ -1,16 +1,27 @@
----
-- name: create new instance
+- name: create basiton instance and boot from the volume
   openstack.cloud.server:
     state: present
     cloud: "{{ target_cloud | default(omit) }}"
     name: "{{ server_name }}"
-    flavor: "{{ server_flaver }}"
-#    key_name: "{{ key_pair }}"
+    flavor: "{{ server_flavor }}"
+    key_name: "{{ public_key_name }}"
     image: "{{ volume_image }}"
     volume_size: "{{ volume_size }}"
     boot_from_volume: yes
     terminate_volume: yes
+    security_groups:
+      - default
     network: "{{ network_name }}"
-    auto_ip: yes
-    
+    auto_ip: no
+    userdata: "{{ server_userdata | default(omit) }}"
+    meta: "{{ server_meta | default(omit) }}"
 
+- name: assign a new floating ip for bastion
+  openstack.cloud.floating_ip:
+    cloud: "{{ target_cloud | default(omit) }}"
+    state: present
+    reuse: yes
+    server: "{{ server_name }}"
+    network: fip-net
+    wait: true
+    timeout: 180
