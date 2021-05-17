@@ -42,3 +42,9 @@
     network: fip-net
     wait: true
     timeout: 180
+  register: floating_ip
+
+- set_fact:
+    floating_ip_address: "{{ floating_ip | json_query('floating_ip.floating_ip_address') }}"
+- debug:
+    var: floating_ip_address
