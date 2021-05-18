@@ -17,10 +17,17 @@ router_name: os_default_router
 external_network: fip-net
 
 # Security Groups
+# ipify_facts モジュールで自分のIPアドレスを調べて利用する場合はyes
+# ipify_public_ip として参照できる
+use_my_ip: "yes"
 security_groups:
-  - name: os_default_sg1
+  - name: ansible-test-sg1
+# - name: os_default_sg1
 # - name: os_default_sg2
-# - name: os_default_sg3
+security_group_rules:
+  - { name: "winrm_http", security_group: "ansible-test-sg1" , protocol: "tcp", port_range_min: "5985", port_range_max: "5985", remote_ip_prefix: "{{ ipify_public_ip }}/32" }
+  - { name: "winrm_https", security_group: "ansible-test-sg1", protocol: "tcp", port_range_min: "5986", port_range_max: "5986", remote_ip_prefix: "{{ ipify_public_ip }}/32" }
+  - { name: "rdp", security_group: "ansible-test-sg1", protocol: "tcp", port_range_min: "3389", port_range_max: "3389", remote_ip_prefix: "{{ ipify_public_ip }}/32" }
 
 ##################################
 # LoadBalancer
