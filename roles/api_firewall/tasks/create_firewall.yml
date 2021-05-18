@@ -1,7 +1,7 @@
 ---
 - name: create firewall
   uri: 
-    url: https://networking.jp-east-3.cloud.global.fujitsu.com/v2.0/fw/firewalls
+    url: https://networking.{{ os_region_name }}.cloud.global.fujitsu.com/v2.0/fw/firewalls
     method: POST
     headers:
       Content-Type: "application/json"

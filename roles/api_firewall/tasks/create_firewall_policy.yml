@@ -1,7 +1,7 @@
 ---
 - name: create firewall policy
   uri: 
-    url: https://networking.jp-east-3.cloud.global.fujitsu.com/v2.0/fw/firewall_policies
+    url: https://networking.{{ os_region_name }}.cloud.global.fujitsu.com/v2.0/fw/firewall_policies
     method: POST
     headers:
       Content-Type: "application/json"
