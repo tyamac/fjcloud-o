@@ -1,6 +1,7 @@
 ---
 - include_tasks: 'create_keypair.yml'
 - include_tasks: 'create_server.yml'
+- include_tasks: 'add_host.yml'
 # - include_tasks: 'image_info.yml'
 # - include_tasks: 'server.yml'
 

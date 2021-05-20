@@ -25,20 +25,6 @@
 
 
 #----------------------
-# Openstack Compute
-#----------------------
-# Keypair
-# import_key: "yes"|"no"
-# import_key: "no"
-# public_key_name: os_ansible_key
-# public_key_file: os_ansible_key.pub
-# private_key_file: os_ansible_key.pem
-# output_dir: files
-# ↓パブリックキーをインポートする時に指定する↓
-# users_public_key: /home/user/.ssh/id_rsa.pub
-
-
-#----------------------
 # API Common
 #----------------------
 # Include clouds.yml
@@ -59,3 +45,29 @@
 # # API Firewall
 # firewall_name: os_ansible_firewall
 
+
+#----------------------
+# Openstack Compute
+#----------------------
+# Keypair
+# import_key: "yes"|"no"
+# import_key: "no"
+# public_key_name: os_ansible_key
+# public_key_file: os_ansible_key.pub
+# private_key_file: os_ansible_key.pem
+# output_dir: files
+# ↓パブリックキーをインポートする時に指定する↓
+# users_public_key: /home/user/.ssh/id_rsa.pub
+
+# Create Server
+# server_name: "os_default_windows_hourly"
+# server_flavor: "C3-2"
+# key_pair: os_ansible_key.pub
+# volume_name: "os_default_volume1"
+# volume_image: "[Hourly] Windows Server 2019 SE 64bit (Japanese) 02"
+# volume_size: 80
+# volume_image: "CentOS 7.8 64bit (English) 01"
+# volume_size: 40
+
+# Add Host
+# group: "winservers"
