@@ -30,12 +30,12 @@
 
 - name: 'FirewallsにアタッチされたルーターID'
   set_fact:
-    attached_router_id_to_firewalls: "{{ firewalls_list | json_query('json.firewalls[*].router_ids') | flatten(levels=1) }}"
+    attatched_router_id_to_all_firewalls: "{{ firewalls_list | json_query('json.firewalls[*].router_ids') | flatten(levels=1) }}"
 
 
 - name: '{{ firewall_name }}をアタッチしているルーターID一覧'
   set_fact:
-    attached_router_id_to_myfirewall: "{{ firewalls_list | json_query(query_strings) | flatten(levels=1) }}"
+    attached_router_id_to_firewall: "{{ firewalls_list | json_query(query_strings) | flatten(levels=1) }}"
   vars:
     query_strings: "json.firewalls[?name == '{{ firewall_name }}'].router_ids"
   
@@ -45,9 +45,9 @@
     firewall_skip_flag: false
   when:
     # 作成する名前のFirewallのアタッチ済みルーターIDリストにターゲットルータに含まれていない
-    - router_id not in attached_router_id_to_myfirewall
+    - router_id not in attached_router_id_to_firewall
     # 全てのFirewallのアタッチ済みルーターIDリストにターゲットルータが含まれていない
-    - router_id not in attached_router_id_to_firewalls
+    - router_id not in attatched_router_id_to_all_firewalls
 
 
 - name: 'Create firewall skip flag'
@@ -55,12 +55,12 @@
     firewall_skip_flag: true
   when:
     # 作成する名前のFirewallのアタッチ済みルーターIDリストにターゲットルータが含まれてる
-    - router_id in attached_router_id_to_myfirewall
+    - router_id in attached_router_id_to_firewall
 
 
 - name: 'Check router is attached to another firewalls'
   fail:
     msg: "ルーターに別のFirewallがアタッチされています。"
   when:
-    - router_id not in attached_router_id_to_myfirewall
-    - router_id in attached_router_id_to_firewalls
+    - router_id not in attached_router_id_to_firewall
+    - router_id in attatched_router_id_to_all_firewalls
