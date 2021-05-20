@@ -10,15 +10,15 @@
     boot_from_volume: yes
     terminate_volume: yes
     security_groups:
-      - default
+      - "{{ server_security_group | default(omit) }}"
     network: "{{ network_name }}"
     auto_ip: no
     userdata: "{{ server_userdata | default(omit) }}"
     meta: "{{ server_meta | default(omit) }}"
   register: create_server_result
 # - debug:
-#     var: create_server_result
-  
+#     var: create_server_result 
+
 - set_fact:
     server_id: "{{ create_server_result | json_query('id') }}"
 - debug:
