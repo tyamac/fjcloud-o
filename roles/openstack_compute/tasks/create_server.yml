@@ -46,5 +46,5 @@
 
 - set_fact:
     accessIPv4: "{{ floating_ip | json_query('floating_ip.floating_ip_address') }}"
-# - debug:
-#     var: accessIPv4
+- debug:
+    var: accessIPv4
