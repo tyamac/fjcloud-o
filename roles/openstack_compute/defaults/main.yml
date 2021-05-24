@@ -30,4 +30,4 @@ volume_size: 80
 #   </powershell>
 
 # add_host.yml
-group: "winservers"
+group_name: "winservers"
