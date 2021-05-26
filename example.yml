@@ -7,7 +7,7 @@
       import_role:
         name: openstack_networking
 
-    - name: Create Keypair
+    - name: Create Keypair, Server
       import_role:
         name: openstack_compute
 
@@ -18,3 +18,19 @@
     - name: Create Firewall
       import_role:
         name: api_firewall
+
+    - name: Get Server Password
+      import_role:
+        name: api_compute
+
+- hosts: winservers
+  gather_facts: no
+  become: no
+  tasks:
+    - name: Windows Default Settings
+      import_role:
+        name: windows
+
+    - name: 'Zabbix Setup'
+      import_role:
+        name: windows_zabbix
