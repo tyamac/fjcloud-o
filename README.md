@@ -6,7 +6,7 @@
 ansibleに必要な関連パッケージは全てpip(pip3)でインストールした。
 
 ```
-pip3 install ansible openstacksdk
+pip3 install ansible openstacksdk netaddr
 ```
 
 ## Ansible GalaxyからOpenStackのCollectionをインストール
