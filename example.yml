@@ -33,4 +33,4 @@
 
     - name: 'Zabbix Setup'
       import_role:
-        name: windows_zabbix
+        name: win_zabbix
