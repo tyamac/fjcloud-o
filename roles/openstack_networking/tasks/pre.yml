@@ -1,7 +1,19 @@
 ---
-- name: 'Test variables are OK'
+- name: 'Variables are OK'
   assert:
     that:
       - network_name is string
+      - subnet_name is string
+      - cidr | ipaddr('net')
+      - dns is sequence
+      - enable_dhcp is boolean
+      - router_name is string
+      - item | ipv4
     fail_msg: |
       network_name: {{ network_name }}
+      subnet_name: {{ subnet_name }}
+      cidr: {{ cidr }}
+      dns: {{ dns }}
+      enable_dhcp: {{ enable_dhcp }}
+      router_name: {{ router_name }}
+  loop: "{{ dns }}"

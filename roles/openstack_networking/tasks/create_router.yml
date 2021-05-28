@@ -8,7 +8,7 @@
     interfaces: 
       - net: "{{ network_name }}"
         subnet: "{{ subnet_name }}"
-        portip: "{{ gateway_ip }}"
+        portip: "{{ gateway_ip | default(cidr | ipaddr('broadcast') | ipmath(-1)) }}"
   register: response
 # - debug:
 #     var: response

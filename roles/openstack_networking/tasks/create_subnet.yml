@@ -5,8 +5,8 @@
     network_name: "{{ network_name }}"
     name: "{{ subnet_name }}"
     cidr: "{{ cidr }}"
-    gateway_ip: "{{ gateway_ip }}"
+    gateway_ip: "{{ gateway_ip | default(cidr | ipaddr('broadcast') | ipmath(-1)) }}"
     dns_nameservers: "{{ dns }}"
-    enable_dhcp: yes
-    allocation_pool_start: "{{ dhcp_pool_start}}" 
-    allocation_pool_end: "{{ dhcp_pool_end }}"
+    enable_dhcp: "{{ enable_dhcp }}"
+    allocation_pool_start: "{{ dhcp_pool_start | default(cidr | ipmath(+1)) }}" 
+    allocation_pool_end: "{{ dhcp_pool_end | default(cidr | ipaddr('broadcast') | ipmath(-2)) }}"

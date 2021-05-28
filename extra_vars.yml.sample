@@ -14,6 +14,9 @@
 # gateway_ip: 192.168.31.254
 # dhcp_pool_start: 192.168.31.1
 # dhcp_pool_end: 192.168.31.253
+# gateway_ip, dhcp_pool_*は自動で設定されるため、CIDRのみの指定で動作します。
+# gateway_ip, dhcp_pool_*を個別に指定する場合は、上記のSubnet:のパラメータは全て入力してください。
+#
 #
 # Router:
 # router_name: os_default_router
