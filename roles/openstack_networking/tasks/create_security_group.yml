@@ -1,22 +1,22 @@
 ---
-- name: get my public ip address
+- name: 'Get my public ip address'
   ipify_facts:
     timeout: 30
   when: use_my_ip  == "yes"
 
-- name: create security groups
+- name: 'Create security groups'
   openstack.cloud.security_group:
     cloud: "{{ target_cloud | default(omit) }}"
     state: present
     name: "{{ item.name }}"
   with_items: "{{ security_groups }}"
 
-- name: add security group rules
+- name: 'Create security group rules'
   openstack.cloud.security_group_rule:
     security_group: "{{ item.security_group }}"
     protocol: "{{ item.protocol }}"
-    port_range_min: "{{ item.port_range_min }}"
-    port_range_max: "{{ item.port_range_max }}"
+    port_range_min: "{{ item.port_range_min | default(omit) }}"
+    port_range_max: "{{ item.port_range_max | default(omit) }}"
     remote_ip_prefix: "{{ allow_ip | default(item.remote_ip_prefix) }}"
     cloud: "{{ target_cloud | default(omit) }}"
     state: present
