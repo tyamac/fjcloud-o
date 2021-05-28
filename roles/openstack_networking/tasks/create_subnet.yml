@@ -1,5 +1,5 @@
 ---
-- name: create subnet
+- name: 'Create subnet'
   openstack.cloud.subnet:
     state: present
     network_name: "{{ network_name }}"

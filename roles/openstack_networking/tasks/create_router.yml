@@ -1,5 +1,5 @@
 ---
-- name: create router
+- name: 'Create router'
   openstack.cloud.router:
     cloud: "{{ target_cloud | default(omit) }}"
     name: "{{ router_name  }}"
