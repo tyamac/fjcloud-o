@@ -28,6 +28,8 @@ security_group_rules:
   - { name: "winrm_http", security_group: "ansible-test-sg1" , protocol: "tcp", port_range_min: "5985", port_range_max: "5985", remote_ip_prefix: "{{ ipify_public_ip }}/32" }
   - { name: "winrm_https", security_group: "ansible-test-sg1", protocol: "tcp", port_range_min: "5986", port_range_max: "5986", remote_ip_prefix: "{{ ipify_public_ip }}/32" }
   - { name: "rdp", security_group: "ansible-test-sg1", protocol: "tcp", port_range_min: "3389", port_range_max: "3389", remote_ip_prefix: "{{ ipify_public_ip }}/32" }
+  - { name: "zabbix", security_group: "ansible-test-sg1", protocol: "tcp", port_range_min: "10050", port_range_max: "10050", remote_ip_prefix:  "{{ zbx_server_addr }}/32" }
+  - { name: "zabbix", security_group: "ansible-test-sg1", protocol: "tcp", port_range_min: "3389", port_range_max: "3389", remote_ip_prefix: "{{ zbx_server_addr }}/32" }
 
 ##################################
 # LoadBalancer
