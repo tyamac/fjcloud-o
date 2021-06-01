@@ -9,9 +9,6 @@ enable_dhcp: yes
 dns:
   - 8.8.8.8
   - 8.8.4.4
-# gateway_ip: 192.168.31.254
-# dhcp_pool_start: 192.168.31.1
-# dhcp_pool_end: 192.168.31.253
 
 # Router
 router_name: os_default_router
@@ -23,7 +20,7 @@ external_network: fip-net
 use_my_ip: "yes"
 zbx_server_addr: 127.0.0.1
 security_groups:
-  - name: os_default_sg1
+  - os_default_sg1
 security_group_rules:
   - { name: "winrm_http", security_group: "os_default_sg1" , protocol: "tcp", port_range_min: "5985", port_range_max: "5985", remote_ip_prefix: "{{ ipify_public_ip }}/32" }
   - { name: "winrm_https", security_group: "os_default_sg1", protocol: "tcp", port_range_min: "5986", port_range_max: "5986", remote_ip_prefix: "{{ ipify_public_ip }}/32" }

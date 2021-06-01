@@ -9,8 +9,7 @@
     volume_size: "{{ volume_size }}"
     boot_from_volume: yes
     terminate_volume: yes
-    security_groups:
-      - "{{ server_security_group | default(omit) }}"
+    security_groups: "{{ server_security_group | default(security_groups) }}"
     network: "{{ network_name }}"
     auto_ip: no
     userdata: "{{ server_userdata | default(omit) }}"
