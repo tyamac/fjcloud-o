@@ -20,14 +20,15 @@ external_network: fip-net
 use_my_ip: "yes"
 zbx_server_addr: 127.0.0.1
 security_groups:
-  - os_default_sg1
+  - mng
+  - monitor
 security_group_rules:
-  - { name: "winrm_http", security_group: "os_default_sg1" , protocol: "tcp", port_range_min: "5985", port_range_max: "5985", remote_ip_prefix: "{{ ipify_public_ip }}/32" }
-  - { name: "winrm_https", security_group: "os_default_sg1", protocol: "tcp", port_range_min: "5986", port_range_max: "5986", remote_ip_prefix: "{{ ipify_public_ip }}/32" }
-  - { name: "rdp", security_group: "os_default_sg1", protocol: "tcp", port_range_min: "3389", port_range_max: "3389", remote_ip_prefix: "{{ ipify_public_ip }}/32" }
-  - { name: "zabbix", security_group: "os_default_sg1", protocol: "tcp", port_range_min: "10050", port_range_max: "10050", remote_ip_prefix:  "{{ zbx_server_addr }}/32" }
-  - { name: "zabbix", security_group: "os_default_sg1", protocol: "tcp", port_range_min: "3389", port_range_max: "3389", remote_ip_prefix: "{{ zbx_server_addr }}/32" }
-  - { name: "zabbix", security_group: "os_default_sg1", protocol: "icmp", remote_ip_prefix: "{{ zbx_server_addr }}/32" }
+  - { name: "winrm_http", security_group: "mng" , protocol: "tcp", port_range_min: "5985", port_range_max: "5985", remote_ip_prefix: "{{ ipify_public_ip }}/32" }
+  - { name: "winrm_https", security_group: "mng", protocol: "tcp", port_range_min: "5986", port_range_max: "5986", remote_ip_prefix: "{{ ipify_public_ip }}/32" }
+  - { name: "rdp", security_group: "mng", protocol: "tcp", port_range_min: "3389", port_range_max: "3389", remote_ip_prefix: "{{ ipify_public_ip }}/32" }
+  - { name: "zabbix", security_group: "monitor", protocol: "tcp", port_range_min: "10050", port_range_max: "10050", remote_ip_prefix:  "{{ zbx_server_addr }}/32" }
+  - { name: "zabbix", security_group: "monitor", protocol: "tcp", port_range_min: "3389", port_range_max: "3389", remote_ip_prefix: "{{ zbx_server_addr }}/32" }
+  - { name: "zabbix", security_group: "monitor", protocol: "icmp", remote_ip_prefix: "{{ zbx_server_addr }}/32" }
 
 ##################################
 # LoadBalancer
